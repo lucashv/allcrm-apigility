@@ -569,6 +569,15 @@ return [
                     ],
                 ],
             ],
+            'crm.rest.auth-db' => [
+                'type' => 'Segment',
+                'options' => [
+                    'route' => '/auth-db[/:auth_db_id]',
+                    'defaults' => [
+                        'controller' => 'CRM\\V1\\Rest\\AuthDB\\Controller',
+                    ],
+                ],
+            ],
         ],
     ],
     'zf-versioning' => [
@@ -636,6 +645,7 @@ return [
             60 => 'crm.rest.sprint',
             61 => 'crm.rest.venda-produto-contato',
             62 => 'crm.rest.gesto_nacional_dash_board',
+            63 => 'crm.rest.auth-db',
         ],
     ],
     'zf-rest' => [
@@ -2026,6 +2036,28 @@ return [
             'collection_class' => \CRM\V1\Rest\Gesto_nacional_dash_board\Gesto_nacional_dash_boardCollection::class,
             'service_name' => 'gesto_nacional_dash_board',
         ],
+        'CRM\\V1\\Rest\\AuthDB\\Controller' => [
+            'listener' => \CRM\V1\Rest\AuthDB\AuthDBResource::class,
+            'route_name' => 'crm.rest.auth-db',
+            'route_identifier_name' => 'auth_db_id',
+            'collection_name' => 'auth_db',
+            'entity_http_methods' => [
+                0 => 'GET',
+                1 => 'PATCH',
+                2 => 'PUT',
+                3 => 'DELETE',
+            ],
+            'collection_http_methods' => [
+                0 => 'GET',
+                1 => 'POST',
+            ],
+            'collection_query_whitelist' => [],
+            'page_size' => 25,
+            'page_size_param' => null,
+            'entity_class' => \CRM\V1\Rest\AuthDB\AuthDBEntity::class,
+            'collection_class' => \CRM\V1\Rest\AuthDB\AuthDBCollection::class,
+            'service_name' => 'AuthDB',
+        ],
     ],
     'zf-content-negotiation' => [
         'controllers' => [
@@ -2092,6 +2124,7 @@ return [
             'CRM\\V1\\Rest\\Sprint\\Controller' => 'HalJson',
             'CRM\\V1\\Rest\\VendaProdutoContato\\Controller' => 'HalJson',
             'CRM\\V1\\Rest\\Gesto_nacional_dash_board\\Controller' => 'Json',
+            'CRM\\V1\\Rest\\AuthDB\\Controller' => 'HalJson',
         ],
         'accept_whitelist' => [
             'CRM\\V1\\Rest\\AgendaUsuario\\Controller' => [
@@ -2409,6 +2442,11 @@ return [
                 1 => 'application/hal+json',
                 2 => 'application/json',
             ],
+            'CRM\\V1\\Rest\\AuthDB\\Controller' => [
+                0 => 'application/vnd.crm.v1+json',
+                1 => 'application/hal+json',
+                2 => 'application/json',
+            ],
         ],
         'content_type_whitelist' => [
             'CRM\\V1\\Rest\\AgendaUsuario\\Controller' => [
@@ -2660,6 +2698,10 @@ return [
                 1 => 'application/json',
             ],
             'CRM\\V1\\Rest\\Gesto_nacional_dash_board\\Controller' => [
+                0 => 'application/vnd.crm.v1+json',
+                1 => 'application/json',
+            ],
+            'CRM\\V1\\Rest\\AuthDB\\Controller' => [
                 0 => 'application/vnd.crm.v1+json',
                 1 => 'application/json',
             ],
@@ -3423,6 +3465,18 @@ return [
                 'route_identifier_name' => 'gesto_nacional_dash_board_id',
                 'is_collection' => true,
             ],
+            \CRM\V1\Rest\AuthDB\AuthDBEntity::class => [
+                'entity_identifier_name' => 'id',
+                'route_name' => 'crm.rest.auth-db',
+                'route_identifier_name' => 'auth_db_id',
+                'hydrator' => \Zend\Hydrator\ArraySerializable::class,
+            ],
+            \CRM\V1\Rest\AuthDB\AuthDBCollection::class => [
+                'entity_identifier_name' => 'id',
+                'route_name' => 'crm.rest.auth-db',
+                'route_identifier_name' => 'auth_db_id',
+                'is_collection' => true,
+            ],
         ],
     ],
     'zf-apigility' => [
@@ -4051,6 +4105,9 @@ return [
         ],
         'CRM\\V1\\Rest\\VendaProdutoContato\\Controller' => [
             'input_filter' => 'CRM\\V1\\Rest\\VendaProdutoContato\\Validator',
+        ],
+        'CRM\\V1\\Rest\\AuthDB\\Controller' => [
+            'input_filter' => 'CRM\\V1\\Rest\\AuthDB\\Validator',
         ],
     ],
     'input_filter_specs' => [
@@ -10680,10 +10737,39 @@ return [
                 ],
             ],
         ],
+        'CRM\\V1\\Rest\\Auth_db\\Validator' => [
+            0 => [
+                'required' => true,
+                'validators' => [],
+                'filters' => [],
+                'name' => 'usuario',
+            ],
+            1 => [
+                'required' => true,
+                'validators' => [],
+                'filters' => [],
+                'name' => 'password',
+            ],
+        ],
+        'CRM\\V1\\Rest\\AuthDB\\Validator' => [
+            0 => [
+                'required' => true,
+                'validators' => [],
+                'filters' => [],
+                'name' => 'usuario',
+            ],
+            1 => [
+                'required' => true,
+                'validators' => [],
+                'filters' => [],
+                'name' => 'password',
+            ],
+        ],
     ],
     'service_manager' => [
         'factories' => [
             \CRM\V1\Rest\Gesto_nacional_dash_board\Gesto_nacional_dash_boardResource::class => \CRM\V1\Rest\Gesto_nacional_dash_board\Gesto_nacional_dash_boardResourceFactory::class,
+            \CRM\V1\Rest\AuthDB\AuthDBResource::class => \CRM\V1\Rest\AuthDB\AuthDBResourceFactory::class,
         ],
     ],
     'zf-mvc-auth' => [
