@@ -1,0 +1,116 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Operadoras
+ *
+ * @ORM\Table(name="operadoras", indexes={@ORM\Index(name="fk_operadoras_cidades1_idx", columns={"cidades_id"}), @ORM\Index(name="fk_operadora_tipos_operadora1_idx", columns={"tipos_operadora_id"})})
+ * @ORM\Entity
+ */
+class Operadoras
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome_fantasia", type="string", length=100, nullable=false)
+     */
+    private $nomeFantasia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="razao_social", type="string", length=100, nullable=false)
+     */
+    private $razaoSocial;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cnpj", type="string", length=20, nullable=false)
+     */
+    private $cnpj;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=45, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco_numero", type="string", length=45, nullable=true)
+     */
+    private $enderecoNumero;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco_complemento", type="string", length=45, nullable=true)
+     */
+    private $enderecoComplemento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=45, nullable=true)
+     */
+    private $telefone;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_edicao", type="datetime", nullable=true)
+     */
+    private $dataEdicao;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var \crm\Entity\TiposOperadora
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\TiposOperadora")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipos_operadora_id", referencedColumnName="id")
+     * })
+     */
+    private $tiposOperadora;
+
+    /**
+     * @var \crm\Entity\Cidades
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Cidades")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cidades_id", referencedColumnName="id")
+     * })
+     */
+    private $cidades;
+
+
+}
+

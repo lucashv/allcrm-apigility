@@ -1,0 +1,64 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Cidades
+ *
+ * @ORM\Table(name="cidades", indexes={@ORM\Index(name="fk_cidades_estados1_idx", columns={"estados_id"})})
+ * @ORM\Entity
+ */
+class Cidades
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=45, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_edicao", type="datetime", nullable=true)
+     */
+    private $dateEdicao;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \crm\Entity\Estados
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Estados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estados_id", referencedColumnName="id")
+     * })
+     */
+    private $estados;
+
+
+}
+

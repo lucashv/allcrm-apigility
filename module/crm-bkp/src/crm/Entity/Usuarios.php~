@@ -1,0 +1,101 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuarios
+ *
+ * @ORM\Table(name="usuarios", indexes={@ORM\Index(name="fk_usuarios_perfil1_idx", columns={"perfil_id"})})
+ * @ORM\Entity
+ */
+class Usuarios
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=50, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sobre_nome", type="string", length=45, nullable=true)
+     */
+    private $sobreNome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=11, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone_1", type="string", length=45, nullable=true)
+     */
+    private $telefone1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone_2", type="string", length=45, nullable=true)
+     */
+    private $telefone2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_edicao", type="datetime", nullable=true)
+     */
+    private $dataEdicao;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \crm\Entity\Perfil
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Perfil")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="perfil_id", referencedColumnName="id")
+     * })
+     */
+    private $perfil;
+
+
+
+
+}
+

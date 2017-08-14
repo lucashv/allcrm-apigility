@@ -1,0 +1,46 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PlantoesUsuarios
+ *
+ * @ORM\Table(name="plantoes_usuarios", indexes={@ORM\Index(name="fk_plantoes_usuarios_plantoes1_idx", columns={"plantoes_id"}), @ORM\Index(name="fk_plantoes_usuarios_usuarios1_idx", columns={"usuarios_id"})})
+ * @ORM\Entity
+ */
+class PlantoesUsuarios
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \crm\Entity\Plantoes
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Plantoes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="plantoes_id", referencedColumnName="id")
+     * })
+     */
+    private $plantoes;
+
+    /**
+     * @var \crm\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuarios_id", referencedColumnName="id")
+     * })
+     */
+    private $usuarios;
+
+
+}
+

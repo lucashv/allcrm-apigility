@@ -1,0 +1,233 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * InteracoesContato
+ *
+ * @ORM\Table(name="interacoes_contato", indexes={@ORM\Index(name="fk_interacoes_contato_contatos1_idx", columns={"contato_id"}), @ORM\Index(name="fk_interacoes_contato_usuarios1_idx", columns={"usuario_id"})})
+ * @ORM\Entity
+ */
+class InteracoesContato
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descricao", type="string", length=200, nullable=false)
+     */
+    private $descricao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_edicao", type="datetime", nullable=true)
+     */
+    private $dataEdicao;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \crm\Entity\Contatos
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Contatos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contato_id", referencedColumnName="id")
+     * })
+     */
+    private $contato;
+
+    /**
+     * @var \crm\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * })
+     */
+    private $usuario;
+
+    /**
+     * @var \crm\Entity\Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\SituacoesInteracoes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="situacao_interecoes_id", referencedColumnName="id")
+     * })
+     */
+    private $situacoesInteracoes;
+
+    /**
+     * @var \crm\Entity\InteracoesOrigem
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\InteracoesOrigem")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="interacoes_origem_id", referencedColumnName="id")
+     * })
+     */
+    private $interacoesOrigem;
+
+
+    /**
+     * @var \crm\Entity\Produto
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Produtos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produtos_id", referencedColumnName="id")
+     * })
+     */
+    private $produto;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return InteracoesContato
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    /**
+     * @param string $descricao
+     * @return InteracoesContato
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataCriacao()
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * @param \DateTime $dataCriacao
+     * @return InteracoesContato
+     */
+    public function setDataCriacao($dataCriacao)
+    {
+        $this->dataCriacao = $dataCriacao;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataEdicao()
+    {
+        return $this->dataEdicao;
+    }
+
+    /**
+     * @param \DateTime $dataEdicao
+     * @return InteracoesContato
+     */
+    public function setDataEdicao($dataEdicao)
+    {
+        $this->dataEdicao = $dataEdicao;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param boolean $status
+     * @return InteracoesContato
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return Contatos
+     */
+    public function getContato()
+    {
+        return $this->contato;
+    }
+
+    /**
+     * @param Contatos $contato
+     * @return InteracoesContato
+     */
+    public function setContato($contato)
+    {
+        $this->contato = $contato;
+        return $this;
+    }
+
+    /**
+     * @return Usuarios
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param Usuarios $usuario
+     * @return InteracoesContato
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+        return $this;
+    }
+
+
+
+
+}
+

@@ -1,0 +1,184 @@
+<?php
+
+namespace crm\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EmailsContato
+ *
+ * @ORM\Table(name="emails_contato", indexes={@ORM\Index(name="fk_contatos_id1_idx", columns={"contato_id"})})
+ * @ORM\Entity
+ */
+class EmailsContato
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_criacao", type="datetime", nullable=false)
+     */
+    private $dataCriacao;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_edicao", type="datetime", nullable=true)
+     */
+    private $dateEdicao;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status = 1;
+
+    /**
+     * @var \crm\Entity\Contatos
+     *
+     * @ORM\ManyToOne(targetEntity="crm\Entity\Contatos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contato_id", referencedColumnName="id",onDelete="CASCADE")
+     *
+     * })
+     */
+    private $contato;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return EmailsContato
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return EmailsContato
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataCriacao()
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * @param \DateTime $dataCriacao
+     * @return EmailsContato
+     */
+    public function setDataCriacao()
+    {
+        $this->dataCriacao =  new \DateTime("now");;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEdicao()
+    {
+        return $this->dateEdicao;
+    }
+
+    /**
+     * @param \DateTime $dateEdicao
+     * @return EmailsContato
+     */
+    public function setDateEdicao($dateEdicao)
+    {
+        $this->dateEdicao = $dateEdicao;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param boolean $status
+     * @return EmailsContato
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return Contatos
+     */
+    public function getContato()
+    {
+        return $this->contato;
+    }
+
+    /**
+     * @param Contatos $contato
+     * @return EmailsContato
+     */
+    public function setContato($contato)
+    {
+        $this->contato = $contato;
+        return $this;
+    }
+
+
+
+
+
+    /**
+     * Get status
+     *
+     * @return boolean
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}
