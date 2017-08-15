@@ -1,2 +1,4 @@
 composer require zendframework/zend-log
 composer require zendframework/zend-mvc-i18n
+composer require zendframework/zend-ldap
+composer require zendframework/zend-session

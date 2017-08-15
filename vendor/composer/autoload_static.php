@@ -22,6 +22,7 @@ class ComposerStaticInitd9b163d8f257661d14295c6a2434fa48
             'Zend\\Validator\\' => 15,
             'Zend\\Uri\\' => 9,
             'Zend\\Stdlib\\' => 12,
+            'Zend\\Session\\' => 13,
             'Zend\\ServiceManager\\' => 20,
             'Zend\\Router\\' => 12,
             'Zend\\Permissions\\Rbac\\' => 22,
@@ -33,6 +34,7 @@ class ComposerStaticInitd9b163d8f257661d14295c6a2434fa48
             'Zend\\Math\\' => 10,
             'Zend\\Log\\' => 9,
             'Zend\\Loader\\' => 12,
+            'Zend\\Ldap\\' => 10,
             'Zend\\Json\\' => 10,
             'Zend\\InputFilter\\' => 17,
             'Zend\\I18n\\' => 10,
@@ -130,6 +132,10 @@ class ComposerStaticInitd9b163d8f257661d14295c6a2434fa48
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-stdlib/src',
         ),
+        'Zend\\Session\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-session/src',
+        ),
         'Zend\\ServiceManager\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-servicemanager/src',
@@ -173,6 +179,10 @@ class ComposerStaticInitd9b163d8f257661d14295c6a2434fa48
         'Zend\\Loader\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-loader/src',
+        ),
+        'Zend\\Ldap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-ldap/src',
         ),
         'Zend\\Json\\' => 
         array (
